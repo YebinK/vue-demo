@@ -2,15 +2,18 @@
     <div class="about">
         <h1>about here</h1>
         <Explanation :title="title"/>
-        <button @click="printTitle()">출력</button>
+        <InputField v-model="title"/>
+        <button @click="printName"> 프린트 이름 </button>
     </div>
 </template>
 
 <script>
     import Explanation from "../components/Explanation";
+    import InputField from "../components/InputField";
     export default {
         components: {
-            Explanation
+            Explanation,
+            InputField
         },
         data() {
             return {
@@ -18,8 +21,8 @@
             }
         },
         methods: {
-            printTitle() {
-                alert(this.title);
+            printName() {
+                console.log(this.title);
             }
         }
     }
