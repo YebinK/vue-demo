@@ -4,9 +4,19 @@
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
 
+        <ButtonPage></ButtonPage>
         <router-view/>
     </div>
 </template>
+
+<script>
+    import ButtonPage from "./views/ButtonPage";
+    export default {
+        components: {
+            ButtonPage
+        }
+    }
+</script>
 
 <style>
     #app {
