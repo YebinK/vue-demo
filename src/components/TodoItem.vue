@@ -3,9 +3,10 @@
         <input
                 type="checkbox"
                 :checked="todo.checked"
-                @change="toParent"
+                @change="toggleHere"
         />
         <span> {{todo.text}} </span>
+        <button @click="deleteHere">삭제</button>
     </div>
 </template>
 
@@ -18,11 +19,14 @@
             }
         },
         methods: {
-            toParent(event) {
+            toggleHere(event) {
                 this.$emit('toggleTodo', {
                     id: this.todo.id,
                     checked: event.target.checked
                 });
+            },
+            deleteHere() {
+                this.$emit('deleteTodo', this.todo.id);
             }
         }
     }

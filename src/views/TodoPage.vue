@@ -11,9 +11,11 @@
                 :key="todo.id"
                 :todo="todo"
                 @toggleTodo="toggleTodo"
+                @deleteTodo="deleteTodo"
                 :class="todo.checked ? 'checked' : 'unchecked'"
                 :style="todo.checked ? 'text-decoration: line-through' : ''"
         />
+        {{todos}} <!-- 출력을 위한 todos -->
     </div>
 </template>
 
@@ -46,6 +48,10 @@
             toggleTodo({id, checked}) { // 구조분해!
                 let toggleTodoIndex = this.todos.findIndex(val => val.id === id);
                 this.todos[toggleTodoIndex].checked = checked;
+            },
+            deleteTodo(id) {
+                let deleteTodoIndex = this.todos.findIndex(val => val.id === id);
+                this.todos.splice(deleteTodoIndex, 1);
             }
         }
     }
