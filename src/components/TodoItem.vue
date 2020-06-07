@@ -20,13 +20,18 @@
         },
         methods: {
             toggleHere(event) {
-                this.$emit('toggleTodo', {
+                this.$store.dispatch('toggleTodo', {
                     id: this.todo.id,
                     checked: event.target.checked
-                });
+                })
+                // this.$emit('toggleTodo', {
+                //     id: this.todo.id,
+                //     checked: event.target.checked
+                // });
             },
             deleteHere() {
-                this.$emit('deleteTodo', this.todo.id);
+                this.$store.dispatch('deleteTodo', this.todo.id);
+                // this.$emit('deleteTodo', this.todo.id);
             }
         }
     }

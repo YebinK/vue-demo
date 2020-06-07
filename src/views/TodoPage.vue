@@ -1,5 +1,6 @@
 <template>
     <div>
+        <CompletedTodos/>
         <input
                 type="text"
                 v-model="todoText"
@@ -10,8 +11,6 @@
                 v-for="todo in todos"
                 :key="todo.id"
                 :todo="todo"
-                @toggleTodo="toggleTodo"
-                @deleteTodo="deleteTodo"
                 :class="todo.checked ? 'checked' : 'unchecked'"
                 :style="todo.checked ? 'text-decoration: line-through' : ''"
         />
@@ -21,37 +20,28 @@
 
 <script>
     import TodoItem from "../components/TodoItem";
+    import CompletedTodos from "../components/CompletedTodos";
 
     export default {
         components: {
-            TodoItem
+            TodoItem,
+            CompletedTodos
         },
         data() {
             return {
                 todoText: '',
-                todos: [
-                    {id: 1, text: 'Buy a car', checked: false},
-                    {id: 2, text: 'Buy a ticket', checked: true},
-                    {id: 3, text: 'Buy a building', checked: false},
-                ]
+            }
+        },
+        computed: {
+            todos() {
+                return this.$store.state.todos;
             }
         },
         methods: {
             addTodo(event) {
-                this.todos.push({
-                    id: Math.random(),
-                    text: event.target.value,
-                    checked: false
-                });
-                this.todoText = ''
-            },
-            toggleTodo({id, checked}) { // 구조분해!
-                let toggleTodoIndex = this.todos.findIndex(val => val.id === id);
-                this.todos[toggleTodoIndex].checked = checked;
-            },
-            deleteTodo(id) {
-                let deleteTodoIndex = this.todos.findIndex(val => val.id === id);
-                this.todos.splice(deleteTodoIndex, 1);
+                this.$store.dispatch('addTodo', event.target.value);
+                // this.$store.commit('ADD_TODO', event.target.value);
+                this.todoText = '';
             }
         }
     }
