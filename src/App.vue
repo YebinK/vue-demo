@@ -2,21 +2,18 @@
     <div id="app">
         <img alt="Vue logo" src="./assets/logo.png">
         <TodoPage/>
-<!--        <router-link to="/">Home</router-link>-->
-<!--        <router-link to="/about">About</router-link>-->
-
-<!--        <ButtonPage></ButtonPage>-->
-<!--        <router-view/>-->
+        <UserList/>
     </div>
 </template>
 
 <script>
-    // import ButtonPage from "./views/ButtonPage";
     import TodoPage from "./views/TodoPage";
+    import UserList from "./components/UserList";
+
     export default {
         components: {
-            // ButtonPage,
-            TodoPage
+            TodoPage,
+            UserList
         }
     }
 </script>

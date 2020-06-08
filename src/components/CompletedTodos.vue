@@ -9,9 +9,7 @@
         name: "CompletedTodos",
         computed: {
             completedCount() {
-                return this.$store.state.todos
-                    .filter(val => val.checked)
-                    .length
+                return this.$store.getters['todo/getNumberOfCompletedTodos'];
             }
         }
     }

@@ -34,13 +34,12 @@
         },
         computed: {
             todos() {
-                return this.$store.state.todos;
+                return this.$store.state.todo.todos;
             }
         },
         methods: {
             addTodo(event) {
-                this.$store.dispatch('addTodo', event.target.value);
-                // this.$store.commit('ADD_TODO', event.target.value);
+                this.$store.dispatch('todo/addTodo', event.target.value);
                 this.todoText = '';
             }
         }
